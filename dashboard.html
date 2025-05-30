@@ -62,62 +62,176 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"
     ></script>
      <style>
+      /* Container */
+.dashboard-container {
+  max-width: 1000px;
+  margin: 20rem auto;
+  padding: 2rem;
+  background: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #222;
+}
 
-    .dashboard-container {
-      max-width: 900px;
-      margin: 20rem auto;
-      padding: 20px;
-      background: white;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1rem;
+}
 
-    .logout-btn {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+.welcome-message h1 {
+  margin: 0;
+  font-size: 2.2rem;
+  color: #333;
+}
 
-    .logout-btn h1 {
-      margin: 0;
-      color: #2c3e50;
-    }
+.welcome-message h2 {
+  margin: 0;
+  font-weight: 400;
+  color: #777;
+  font-size: 1.8rem;
+}
 
-    .logout-btn button {
-      background-color: goldenrod;
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      cursor: pointer;
-      border-radius: 5px;
-    }
+.logout-btn {
+  background-color: goldenrod;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-size: 1.8rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
 
-    .summary h2 {
-      color: #000036;
-    }
+.logout-btn:hover {
+  background-color: #e1b74d;
+}
 
-    .booking-list {
-      list-style: none;
-      padding: 0;
-    }
+.summary {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  gap: 2rem;
+}
 
-    .booking-list li {
-      padding: 12px;
-      border-bottom: 1px solid #ccc;
-      margin-bottom: 10px;
-      line-height: 1.5;
-    }
+.summary-item {
+  flex: 1;
+  background: #f9f9f9;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  text-align: center;
+}
 
-    .error-message {
-      color: red;
-      font-weight: bold;
-      margin-top: 20px;
-      font-size: 1.6rem;
-    }
+.summary-item h3 {
+  margin-bottom: 0.5rem;
+  color: #555;
+  font-size: 1.5rem;
+}
 
-    .loading {
-      color: #555;
-      font-style: italic;
-    }
+.summary-item span {
+  font-size: 2rem;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.summary-item button {
+  background-color: #000036;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-size: 1.6rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.summary-item button:hover {
+  background-color: #000036;
+}
+
+.dashboard-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.dashboard-column {
+  background: #fefefe;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  min-height: 300px;
+  overflow-y: auto;
+}
+
+.dashboard-column h2 {
+  margin-top: 0;
+  color: #333;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.5rem;
+}
+
+.loading {
+  font-style: italic;
+  color: #777;
+  margin-bottom: 1rem;
+}
+
+.booking-list {
+  list-style-type: none;
+  padding-left: 0;
+  max-height: 450px;
+  overflow-y: auto;
+}
+
+.booking-list li {
+  border-bottom: 1px solid #eee;
+  padding: 0.8rem 0;
+  font-size: 1.5rem;
+  color: #444;
+}
+
+.booking-list li strong {
+  color: #222;
+}
+
+.error-message {
+  color: #e74c3c;
+  font-weight: 600;
+  margin-top: 2rem;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    margin: 2rem 1rem;
+  }
+
+  .summary {
+    flex-direction: column;
+  }
+
+  .dashboard-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-item {
+    margin-bottom: 1.5rem;
+  }
+}
+
+
   </style>
   </head>
   <body class="sticky">
@@ -140,16 +254,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <nav class="main-nav">
           <ul class="main-nav-list">
             <li>
-              <a class="main-nav-link" href="./index.html"
-                ><i class="fa-solid fa-house"></i>Home</a
+              <a class="main-nav-link" href="../../frontend/index.html"
+                ><i class="fa-solid fa-house"></i> Homepage</a
               >
-            </li>
-          
-            <li>
-            <a class="main-nav-link nav-cta" href="#my-form"
-              ><i class="fa-solid fa-address-card"></i> Log out </a
-            >
-          </li> 
+            </li> 
           </ul>
         </nav>
 
@@ -161,27 +269,46 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <main>
       <section>
-                 <div class="dashboard-container">
-    <section class="logout-btn">
-      <h1>Admin Dashboard</h1>
-      <h2>Welcome, Admin</h2>
-      <button onclick="logout()">Logout</button>
-    </section>
+  <div class="dashboard-container">
+    <header class="dashboard-header">
+      <div class="welcome-message">
+        <h1>Admin Dashboard</h1>
+        <h2>Welcome, Admin</h2>
+      </div>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </header>
 
     <section class="summary">
-      <h2>Total Bookings: <span id="total-bookings">Loading...</span></h2>
+      <div class="summary-item">
+        <h3>Total Bookings:</h3>
+        <span id="total-bookings">-</span>
+        <button onclick="fetchBookings()">View Bookings</button>
+      </div>
+
+      <div class="summary-item">
+        <h3>Total Contacts:</h3>
+        <span id="total-contacts">-</span>
+        <button onclick="fetchContacts()">View Contacts</button>
+      </div>
     </section>
 
-    <section>
-      <h2>Booking Details</h2>
-      <p id="loading" class="loading">Fetching bookings...</p>
-      <ul id="booking-list" class="booking-list"></ul>
-    </section>
+    <div class="dashboard-columns">
+      <section class="dashboard-column" id="bookings-section">
+        <h2>Booking Details</h2>
+        <p id="bookings-loading" class="loading" style="display:none;">Fetching bookings...</p>
+        <ul id="booking-list" class="booking-list"></ul>
+      </section>
+
+      <section class="dashboard-column" id="contacts-section">
+        <h2>Contact Details</h2>
+        <p id="contacts-loading" class="loading" style="display:none;">Fetching contacts...</p>
+        <ul id="contact-list" class="booking-list"></ul>
+      </section>
+    </div>
 
     <p id="message" class="error-message"></p>
   </div>
-      </section>
-
+</section>
     </main>
 
      <footer class="footer">
@@ -287,55 +414,117 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </footer>
      <script src="script.js"></script>
    
-  
-  <script>
-    const API_URL = '/api/v1/booking';
-    const token = localStorage.getItem('authToken');
+   <script>
+    const API_BOOKINGS_URL = '/api/v1/booking';
+const API_CONTACTS_URL = '/api/v1/contact-us';
+const token = localStorage.getItem('authToken');
 
-    if (!token) {
-      window.location.href = '/adminLogin.html';
-    }
+if (!token) {
+  window.location.href = '/adminLogin.html';
+}
 
-    function logout() {
-      localStorage.removeItem('authToken');
-      window.location.href = '/adminLogin.html';
-    }
+function logout() {
+  localStorage.removeItem('authToken');
+  window.location.href = '/adminLogin.html';
+}
 
-    fetch(API_URL, {
-      headers: {
-        'Authorization': 'Bearer ' + token
-      }
-    })
-    .then(response => {
-      if (!response.ok) throw new Error('Unauthorized');
-      return response.json();
-    })
-    .then(bookings => {
-      document.getElementById('loading').style.display = 'none';
-      document.getElementById('total-bookings').textContent = bookings.length;
+function setMessage(msg, isError = false) {
+  const messageEl = document.getElementById('message');
+  messageEl.textContent = msg;
+  messageEl.style.color = isError ? '#e74c3c' : '#27ae60';
+}
 
-      const list = document.getElementById('booking-list');
-      bookings.forEach(booking => {
+// Fetch and display bookings
+async function fetchBookings() {
+  setMessage('');
+  const loading = document.getElementById('bookings-loading');
+  const list = document.getElementById('booking-list');
+  const totalBookings = document.getElementById('total-bookings');
+
+  loading.style.display = 'block';
+  list.innerHTML = '';
+
+  try {
+    const res = await fetch(API_BOOKINGS_URL, {
+      headers: { 'Authorization': 'Bearer ' + token }
+    });
+
+    if (!res.ok) throw new Error('Failed to fetch bookings.');
+
+    const bookings = await res.json();
+
+    totalBookings.textContent = bookings.length;
+
+    if (bookings.length === 0) {
+      list.innerHTML = '<li>No bookings found.</li>';
+    } else {
+      bookings.forEach(b => {
         const li = document.createElement('li');
         li.innerHTML = `
-          <strong>Name: </strong> ${booking.name}<br/>
-          <strong>Email: </strong> ${booking.email}<br/>
-          <strong>Phone: </strong> ${booking.mobileNo}<br/>
-          <strong>Service: </strong> ${booking.legalServiceNeeded}<br/>
-          <strong>Date: </strong> ${new Date(booking.preferredDateAndTime).toLocaleString()}<br/>
-          <strong>Comment: </strong> ${booking.comment || 'N/A'}<br/>
-          <strong>Document(s) Attached: </strong>   ${booking.uploadFile && b.uploadFile.length > 0? `<a href="${b.uploadFile[0].s3Url}" target="_blank">View File</a>`: 'No File'}
+          <strong>Name:</strong> ${b.name}<br/>
+          <strong>Email:</strong> ${b.email}<br/>
+          <strong>Phone:</strong> ${b.mobileNo}<br/>
+          <strong>Service:</strong> ${b.legalServiceNeeded}<br/>
+          <strong>Date:</strong> ${new Date(b.preferredDateAndTime).toLocaleString()}<br/>
+          <strong>Comment:</strong> ${b.comment || 'N/A'}<br/>
+          <strong>Document(s) Attached:</strong> ${
+            b.uploadFile && b.uploadFile.length > 0
+              ? `<a href="${b.uploadFile[0].s3Url}" target="_blank" rel="noopener noreferrer">View File</a>`
+              : 'No File'
+          }
         `;
         list.appendChild(li);
       });
-    })
-    .catch(err => {
-      document.getElementById('loading').style.display = 'none';
-      const msg = document.getElementById('message');
-      msg.textContent = 'Access denied or session expired. Redirecting to login...';
-      setTimeout(() => window.location.href = '/adminLogin.html', 4000);
-    });
-  </script>
+    }
+  } catch (err) {
+    setMessage('Error fetching bookings. Please try again later.', true);
+  } finally {
+    loading.style.display = 'none';
+  }
+}
 
+// Fetch and display contacts
+async function fetchContacts() {
+  setMessage('');
+  const loading = document.getElementById('contacts-loading');
+  const list = document.getElementById('contact-list');
+  const totalContacts = document.getElementById('total-contacts');
+
+  loading.style.display = 'block';
+  list.innerHTML = '';
+
+  try {
+    const res = await fetch(API_CONTACTS_URL, {
+      headers: { 'Authorization': 'Bearer ' + token }
+    });
+
+    if (!res.ok) throw new Error('Failed to fetch contacts.');
+
+    const contacts = await res.json();
+
+    totalContacts.textContent = contacts.length;
+
+    if (contacts.length === 0) {
+      list.innerHTML = '<li>No contacts found.</li>';
+    } else {
+      contacts.forEach(c => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <strong>Name:</strong> ${c.fullName}<br/>
+          <strong>Email:</strong> ${c.email}<br/>
+          <strong>Message:</strong> ${c.message}<br/>
+          <strong>Date:</strong> ${new Date(c.createdAt).toLocaleString()}<br/>
+        `;
+        list.appendChild(li);
+      });
+    }
+  } catch (err) {
+    setMessage('Error fetching contacts. Please try again later.', true);
+  } finally {
+    loading.style.display = 'none';
+  }
+}
+
+  </script> 
   </body>
 </html>
